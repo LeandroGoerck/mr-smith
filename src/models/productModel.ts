@@ -1,4 +1,4 @@
-import connection from '../database/connection';
+import connection from './connection';
 import IProduct from '../interfaces/product.interface';
 
 export default class ProductModel {
