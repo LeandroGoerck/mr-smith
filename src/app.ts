@@ -1,5 +1,6 @@
 // project here
 import express, { Request, Response } from 'express';
+import productRoutes from './routes/productRoutes';
 
 const app = express();
 
@@ -8,5 +9,6 @@ app.use(express.json());
 app.get('/', (_req: Request, res: Response) => {
   res.send({ status: 'OK' });
 });
+app.use('/products', productRoutes);
 
 export default app;
