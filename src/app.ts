@@ -1,5 +1,6 @@
 // project here
 import express, { Request, Response } from 'express';
+import errorHandler from './middlewares/errorHandler';
 import productRoutes from './routes/productRoutes';
 
 const app = express();
@@ -10,5 +11,6 @@ app.get('/', (_req: Request, res: Response) => {
   res.send({ status: 'OK' });
 });
 app.use('/products', productRoutes);
+app.use(errorHandler);
 
 export default app;
