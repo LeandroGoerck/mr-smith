@@ -10,7 +10,6 @@ export default class OrderModel {
       'SELECT orderId, id as prodId  FROM Trybesmith.Products;',
     );
     
-    console.log(orders);
     const orderObj: Array<IOrder> = Object
       .values(orders).map((order) => ({ id: order.id, userId: order.userId, productsIds: [] }));
     
