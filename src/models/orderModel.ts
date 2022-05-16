@@ -1,5 +1,5 @@
 import connection from './connection';
-import IOrder from '../interfaces/order.interface';
+import IOrder from '../interfaces/orderInterface';
 
 export default class OrderModel {
   public getAll = async (): Promise<IOrder[]> => {
@@ -16,13 +16,10 @@ export default class OrderModel {
     Object.values(products).forEach((product) => {
       Object.values(orders).forEach((order, index) => {
         if (order.id === product.orderId) {
-          // if (order.productsIds === undefined) order.productsIds = [];
-          // order.productsIds.push(product.prodId);
           orderObj[index].productsIds.push(product.prodId);
         }
       });
     });
-    console.log(orderObj);
     
     return orderObj as IOrder[];
   };

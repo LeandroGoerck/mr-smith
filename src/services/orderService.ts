@@ -1,4 +1,4 @@
-import IOrder from '../interfaces/order.interface';
+import IOrder from '../interfaces/orderInterface';
 import OrderModel from '../models/orderModel';
 
 export default class OrderService {

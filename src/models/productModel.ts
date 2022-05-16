@@ -1,6 +1,6 @@
 import { ResultSetHeader } from 'mysql2/promise';
 import connection from './connection';
-import IProduct from '../interfaces/product.interface';
+import IProduct from '../interfaces/productInterface';
 
 export default class ProductModel {
   public getAll = async (): Promise<IProduct[]> => {
