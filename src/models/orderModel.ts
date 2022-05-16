@@ -9,17 +9,22 @@ export default class OrderModel {
     const [products] = await connection.execute(
       'SELECT orderId, id as prodId  FROM Trybesmith.Products;',
     );
-
+    
+    console.log(orders);
+    const orderObj: Array<IOrder> = Object
+      .values(orders).map((order) => ({ id: order.id, userId: order.userId, productsIds: [] }));
+    
     Object.values(products).forEach((product) => {
-      Object.values(orders).forEach((order) => {
+      Object.values(orders).forEach((order, index) => {
         if (order.id === product.orderId) {
-          // eslint-disable-next-line no-param-reassign
-          if (order.productsIds === undefined) order.productsIds = [];
-          order.productsIds.push(product.prodId);
+          // if (order.productsIds === undefined) order.productsIds = [];
+          // order.productsIds.push(product.prodId);
+          orderObj[index].productsIds.push(product.prodId);
         }
       });
     });
+    console.log(orderObj);
     
-    return orders as IOrder[];
+    return orderObj as IOrder[];
   };
 }
