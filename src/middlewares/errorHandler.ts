@@ -3,7 +3,12 @@ import Joi from 'joi';
 
 require('express-async-errors');
 
-const errorHandler = (err: Error, req: Request, res: Response, _next: NextFunction) => {
+const errorHandler = (
+  err: Error,
+  req: Request,
+  res: Response,
+  _next: NextFunction,
+) => {
   if (Joi.isError(err)) {
     console.log(err);
     return res.status(400).json({ message: err.message });
