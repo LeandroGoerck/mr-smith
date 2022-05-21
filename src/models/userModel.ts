@@ -9,15 +9,20 @@ export default class UserModel {
     level: number,
     password: string,
   ): Promise<{ token: string }> => {
-    await connection.execute<ResultSetHeader>(
-      'INSERT INTO Trybesmith.Users (username, classe, level, password) VALUES (?, ?, ?, ?);',
-      [username, classe, level, password],
-    );
+    const query = `INSERT INTO Trybesmith.Users
+                   (username, classe, level, password)
+                   VALUES (?, ?, ?, ?);`;
+    const values = [username, classe, level, password];
+    
+    await connection.execute<ResultSetHeader>(query, values);
 
     return { token: 'aqui vai o token' };
   };
 
-  public getByName = async (username: string, password: string): Promise<ILogin | null> => {
+  public getByName = async (
+    username: string,
+    password: string,
+  ): Promise<ILogin | null> => {
     const query = `SELECT username, password
                    FROM Trybesmith.Users
                    WHERE username = ? AND password = ?;`;
